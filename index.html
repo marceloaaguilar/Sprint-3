@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script
+          src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+          integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+          crossorigin="anonymous"
+        ></script>
+        <style>
+          #filmes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+          .container-film {
+            margin: 5px;
+          }
+          img {
+            height: 426px;
+          }
+        </style>
+      </head>
+      <body onload="onInit()">
+        <form action="">
+          <input type="text" />
+          <button id="adicionar">Adcionar</button>
+        </form>
+        <button id="direcionar">direcionar</button>
+        <div id="filmes"></div>
+      </body>
+      <script>
+        let filmes = [
+          {
+            Title: 'Fantastic Beasts: The Secrets of Dumbledore',
+            Year: '2022',
+            Rated: 'PG-13',
+            Released: '15 Apr 2022',
+            Runtime: '142 min',
+            Genre: 'Adventure, Family, Fantasy',
+            Director: 'David Yates',
+            Writer: 'J.K. Rowling, Steve Kloves',
+            Actors: 'Eddie Redmayne, Jude Law, Ezra Miller',
+            Plot: 'Albus Dumbledore assigns Newt and his allies with a mission related to the rising power of Grindelwald.',
+            Language: 'English, German',
+            Country: 'United Kingdom, United States',
+            Awards: 'N/A',
+            Poster:
+              'https://m.media-amazon.com/images/M/MV5BZGQ1NjQyNDMtNzFlZS00ZGIzLTliMWUtNGJkMGMzNTBjNDg0XkEyXkFqcGdeQXVyMTE1NDI5MDQx._V1_SX300.jpg',
+            Ratings: [
+              { Source: 'Internet Movie Database', Value: '6.5/10' },
+              { Source: 'Rotten Tomatoes', Value: '47%' },
+              { Source: 'Metacritic', Value: '47/100' }
+            ],
+            Metascore: '47',
+            imdbRating: '6.5',
+            imdbVotes: '46,503',
+            imdbID: 'tt4123432',
+            Type: 'movie',
+            DVD: 'N/A',
+            BoxOffice: '$80,236,487',
+            Production: 'N/A',
+            Website: 'N/A',
+            Response: 'True'
+          },
+          {
+            Title: 'Moonfall',
+            Year: '2022',
+            Rated: 'PG-13',
+            Released: '04 Feb 2022',
+            Runtime: '130 min',
+            Genre: 'Action, Adventure, Sci-Fi',
+            Director: 'Roland Emmerich',
+            Writer: 'Roland Emmerich, Harald Kloser, Spenser Cohen',
+            Actors: 'Halle Berry, Patrick Wilson, John Bradley',
+            Plot: 'A mysterious force knocks the moon from its orbit around Earth and sends it hurtling on a collision course with life as we know it.',
+            Language: 'English, Chinese',
+            Country: 'United States, China, United Kingdom, Canada',
+            Awards: 'N/A',
+            Poster:
+              'https://m.media-amazon.com/images/M/MV5BZjk0OWZiN2ItNmQ2YS00NTJmLTg0MjItNzM4NzBkMWM1ZTRlXkEyXkFqcGdeQXVyMjMxOTE0ODA@._V1_SX300.jpg',
+            Ratings: [
+              { Source: 'Internet Movie Database', Value: '5.2/10' },
+              { Source: 'Rotten Tomatoes', Value: '38%' },
+              { Source: 'Metacritic', Value: '41/100' }
+            ],
+            Metascore: '41',
+            imdbRating: '5.2',
+            imdbVotes: '34,668',
+            imdbID: 'tt5834426',
+            Type: 'movie',
+            DVD: 'N/A',
+            BoxOffice: '$19,060,660',
+            Production: 'N/A',
+            Website: 'N/A',
+            Response: 'True'
+          },
+          {
+            Title: 'Halo',
+            Year: '2022?',
+            Rated: 'TV-14',
+            Released: '24 Mar 2022',
+            Runtime: 'N/A',
+            Genre: 'Action, Adventure, Sci-Fi',
+            Director: 'N/A',
+            Writer: 'Steven Kane, Kyle Killen',
+            Actors: 'Pablo Schreiber, Shabana Azmi, Yerin Ha',
+            Plot: "Aliens threaten human existence in an epic 26th-century showdown. TV series based on the video game 'Halo.'",
+            Language: 'English',
+            Country: 'United States',
+            Awards: '3 wins',
+            Poster:
+              'https://m.media-amazon.com/images/M/MV5BYzhlOTkzZDMtNDYxYS00NTY2LWJjZDEtNjI3NmE3MTI2NGU2XkEyXkFqcGdeQXVyMTM1MTE1NDMx._V1_SX300.jpg',
+            Ratings: [{ Source: 'Internet Movie Database', Value: '7.0/10' }],
+            Metascore: 'N/A',
+            imdbRating: '7.0',
+            imdbVotes: '26,709',
+            imdbID: 'tt2934286',
+            Type: 'series',
+            totalSeasons: '1',
+            Response: 'True'
+          },
+          {
+            Title: 'Doctor Strange in the Multiverse of Madness',
+            Year: '2022',
+            Rated: 'PG-13',
+            Released: '06 May 2022',
+            Runtime: '126 min',
+            Genre: 'Action, Adventure, Fantasy',
+            Director: 'Sam Raimi',
+            Writer: 'Michael Waldron, Stan Lee, Steve Ditko',
+            Actors: 'Benedict Cumberbatch, Rachel McAdams, Elizabeth Olsen',
+            Plot: 'Dr. Stephen Strange casts a forbidden spell that opens the doorway to the multiverse, including alternate versions of himself, whose threat to humanity is too great for the combined forces of Strange, Wong, and Wanda Maximoff.',
+            Language: 'English',
+            Country: 'United States',
+            Awards: 'N/A',
+            Poster:
+              'https://m.media-amazon.com/images/M/MV5BNWM0ZGJlMzMtZmYwMi00NzI3LTgzMzMtNjMzNjliNDRmZmFlXkEyXkFqcGdeQXVyMTM1MTE1NDMx._V1_SX300.jpg',
+            Ratings: [],
+            Metascore: 'N/A',
+            imdbRating: 'N/A',
+            imdbVotes: 'N/A',
+            imdbID: 'tt9419884',
+            Type: 'movie',
+            DVD: 'N/A',
+            BoxOffice: 'N/A',
+            Production: 'N/A',
+            Website: 'N/A',
+            Response: 'True'
+          },
+          {
+            Title: 'Death on the Nile',
+            Year: '2022',
+            Rated: 'PG-13',
+            Released: '11 Feb 2022',
+            Runtime: '127 min',
+            Genre: 'Crime, Drama, Mystery',
+            Director: 'Kenneth Branagh',
+            Writer: 'Michael Green, Agatha Christie',
+            Actors: 'Tom Bateman, Annette Bening, Kenneth Branagh',
+            Plot: 'While on vacation on the Nile, Hercule Poirot must investigate the murder of a young heiress.',
+            Language: 'English, French',
+            Country: 'United States, United Kingdom',
+            Awards: 'N/A',
+            Poster:
+              'https://m.media-amazon.com/images/M/MV5BNjI4ZTQ1OTYtNTI0Yi00M2EyLThiNjMtMzk1MmZlOWMyMDQwXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_SX300.jpg',
+            Ratings: [
+              { Source: 'Internet Movie Database', Value: '6.4/10' },
+              { Source: 'Rotten Tomatoes', Value: '62%' },
+              { Source: 'Metacritic', Value: '52/100' }
+            ],
+            Metascore: '52',
+            imdbRating: '6.4',
+            imdbVotes: '78,915',
+            imdbID: 'tt7657566',
+            Type: 'movie',
+            DVD: 'N/A',
+            BoxOffice: '$45,601,165',
+            Production: 'N/A',
+            Website: 'N/A',
+            Response: 'True'
+          },
+          {
+            Title: '365 Days',
+            Year: '2020',
+            Rated: 'TV-MA',
+            Released: '07 Jun 2020',
+            Runtime: '114 min',
+            Genre: 'Drama, Romance',
+            Director: 'Barbara Bialowas, Tomasz Mandes',
+            Writer: 'Tomasz Klimala, Tomasz Mandes, Barbara Bialowas',
+            Actors:
+              'Anna Maria Sieklucka, Michele Morrone, Bronislaw Wroclawski',
+            Plot: 'Massimo is a member of the Sicilian Mafia family and Laura is a sales director. She does not expect that on a trip to Sicily trying to save her relationship, Massimo will kidnap her and give her 365 days to fall in love with him.',
+            Language: 'Polish, English, Italian',
+            Country: 'Poland',
+            Awards: '1 win & 5 nominations',
+            Poster:
+              'https://m.media-amazon.com/images/M/MV5BODljZTM3ODAtMDc0YS00NmI4LTlmZTUtM2I5MDAzNTQxZmMxXkEyXkFqcGdeQXVyMTEwMTY3NDI@._V1_SX300.jpg',
+            Ratings: [
+              { Source: 'Internet Movie Database', Value: '3.4/10' },
+              { Source: 'Rotten Tomatoes', Value: '0%' }
+            ],
+            Metascore: 'N/A',
+            imdbRating: '3.4',
+            imdbVotes: '75,757',
+            imdbID: 'tt10886166',
+            Type: 'movie',
+            DVD: '11 Jun 2020',
+            BoxOffice: 'N/A',
+            Production: 'N/A',
+            Website: 'N/A',
+            Response: 'True'
+          }
+        ]
+
+        $('#adicionar').click(function (e) {
+          e.preventDefault()
+
+          let Storagelocal = JSON.parse(localStorage.getItem('filmes'))
+          fetch(
+            `https://www.omdbapi.com/?t=${$('input').val()}&apikey=6c345945`
+          )
+            .then(res => res.json())
+            .then(res => {
+              if (res.Error == undefined || res.Response == false) {
+                console.log('entrou')
+                return new Error('Não existe filme')
+              } else {
+                console.log('entrou 2')
+                Storagelocal.push(res)
+              }
+            })
+            .then(() =>
+              localStorage.setItem('filmes', JSON.stringify(Storagelocal))
+            )
+            .then(() => alert('filme adicionado, refresh para ver novo filme'))
+            .catch(res => console.log(res))
+        })
+
+        function direcionar(nome, year) {
+          window.location.href = `detalhes.html?nome=${nome}&year=${year}`
+        }
+
+        function onInit() {
+          if (localStorage.getItem('filmes') == null) {
+            localStorage.setItem('filmes', JSON.stringify(filmes))
+            let Storagelocal = JSON.parse(localStorage.getItem('filmes'))
+
+            Storagelocal.forEach(valor => {
+              let nota = 0
+
+              $('#filmes').append(`
+                <div class="container-film">
+                    <img src=${valor.Poster} onclick="direcionar('${valor.Title}')"></img>
+                    <div>
+                        <h5>${valor.Title}</h5>
+                        <p>${valor.Year}</p>
+                        <p>${valor.Genre}</p>
+                        
+                    </div>
+                </div>
+            `)
+            })
+          } else {
+            let Storagelocal = JSON.parse(localStorage.getItem('filmes'))
+            console.log(Storagelocal)
+            Storagelocal.forEach(valor => {
+              let nota = 0
+              if (valor.Ratings.length === 0) {
+                nota = '6/10'
+              } else {
+                nota = valor.Ratings[0].Value
+              }
+
+              $('#filmes').append(`
+                <div class="container-film">
+                    <img src=${valor.Poster} onclick="direcionar('${valor.Title}' ,'${valor.Year}')"></img>
+                    <div>
+                        <h5>${valor.Title}</h5>
+                        <p>${valor.Year}</p>
+                        <p>${valor.Genre}</p>
+                        <p>${nota}</p>
+                    </div>
+                </div>
+            `)
+            })
+          }
+        }
+      </script>
+    </html>
+    index.html 8 KB
+  </head>
+</html>

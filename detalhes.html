@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Detalhes do Filme</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+      integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <main>
+      <div>
+        <div id="headerTitle">
+          <h1 id="title"></h1>
+          <p id="runtime"></p>
+        </div>
+        <div>
+          <h2 id="imdbRating"></h2>
+        </div>
+        <div id="sinopse">
+          <p id="plot"></p>
+        </div>
+        <div>
+          <p id="genre"></p>
+          <p id="year"></p>
+        </div>
+
+        <div id="squad">
+          <div>
+            <p>
+              Director:
+              <span id="director"> </span>
+            </p>
+          </div>
+          <p>
+            Actors:
+            <span id="actors"></span>
+          </p>
+        </div>
+      </div>
+      <div id="img">
+        <img id="poster" />
+      </div>
+    </main>
+  </body>
+</html>
+<script>
+  let params = new URLSearchParams(window.location.search)
+  let nome = params.get('nome')
+  let ano = params.get('year')
+  let Storagelocal = JSON.parse(localStorage.getItem('filmes'))
+
+  let infoPagina = Storagelocal.filter(valor => {
+    return valor.Title == nome
+  })
+
+  $('#title').html(nome)
+  $('#year').html(ano)
+  $('#poster').attr('src', infoPagina[0].Poster)
+  $('#plot').html(infoPagina[0].Plot)
+  $('#genre').html(infoPagina[0].Genre)
+  $('#director').html(infoPagina[0].Director)
+  $('#runtime').html(infoPagina[0].Runtime)
+  $('#actors').html(infoPagina[0].Actors)
+  $('#imdbRating').html(infoPagina[0].imdbRating)
+</script>
